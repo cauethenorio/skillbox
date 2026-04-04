@@ -1,0 +1,9 @@
+{
+  "browser": {
+    "userDataDir": ".playwright/data/session",
+    "launchOptions": {
+      "headless": false
+    }
+  },
+  "outputDir": ".playwright/data/output"
+}

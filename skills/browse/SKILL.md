@@ -1,38 +1,38 @@
 ---
 name: browse
 description: Use when needing to automate browser interactions, navigate websites, fill forms, take screenshots, extract data from web pages, or manage browser sessions via Playwright
-allowed-tools: Bash(npx @playwright/cli*:*)
+allowed-tools: Bash(**/browse.sh*:*)
 ---
 
 # Browser Automation with @playwright/cli
 
-**IMPORTANT:** The correct package is `@playwright/cli`. Do NOT use `@anthropic-ai/playwrightcli` — that is a different tool. All commands in this skill use `npx @playwright/cli`.
+All commands use `browse.sh` — a wrapper script bundled with this skill that calls `npx @playwright/cli` with the correct config. The config enables headed mode, persistent sessions, and stores all data in the project's `.playwright/data/` directory.
 
 ## Project conventions
 
-- Always open in headed mode with persistent sessions so the developer can see the browser and sessions are preserved:
+- Use `browse.sh` from this skill's base directory (shown as `Base directory for this skill:` when loaded) for all commands:
   ```bash
-  npx @playwright/cli open --headed --persistent <url>
+  <skill-base-dir>/browse.sh open <url>
   ```
-- This preserves login sessions across runs, avoiding repeated authentication.
+- Session data is stored in `.playwright/data/session/` and snapshots in `.playwright/data/output/` relative to the working directory.
 
 Check `## Browser testing` in CLAUDE.md for project-specific overrides (base URL, browser choice, dev server instructions).
 
 ## Quick start
 
 ```bash
-# Open browser (headed + persistent by default)
-npx @playwright/cli open --headed --persistent
-# Navigate to a page
-npx @playwright/cli goto https://example.com
+# Open browser
+<skill-base-dir>/browse.sh open
+# Open browser and navigate
+<skill-base-dir>/browse.sh open https://example.com
 # Interact with elements using refs from the snapshot
-npx @playwright/cli click e15
-npx @playwright/cli fill e5 "search query"
-npx @playwright/cli press Enter
+<skill-base-dir>/browse.sh click e15
+<skill-base-dir>/browse.sh fill e5 "search query"
+<skill-base-dir>/browse.sh press Enter
 # Take a snapshot to see current state
-npx @playwright/cli snapshot
+<skill-base-dir>/browse.sh snapshot
 # Close the browser
-npx @playwright/cli close
+<skill-base-dir>/browse.sh close
 ```
 
 ## Commands
@@ -40,244 +40,223 @@ npx @playwright/cli close
 ### Core
 
 ```bash
-npx @playwright/cli open
-# open and navigate right away
-npx @playwright/cli open https://example.com/
-npx @playwright/cli goto https://playwright.dev
-npx @playwright/cli type "search query"
-npx @playwright/cli click e3
-npx @playwright/cli dblclick e7
-npx @playwright/cli fill e5 "user@example.com"
-npx @playwright/cli drag e2 e8
-npx @playwright/cli hover e4
-npx @playwright/cli select e9 "option-value"
-npx @playwright/cli upload ./document.pdf
-npx @playwright/cli check e12
-npx @playwright/cli uncheck e12
-npx @playwright/cli snapshot
-npx @playwright/cli snapshot --filename=after-click.yaml
-npx @playwright/cli eval "document.title"
-npx @playwright/cli eval "el => el.textContent" e5
-npx @playwright/cli dialog-accept
-npx @playwright/cli dialog-accept "confirmation text"
-npx @playwright/cli dialog-dismiss
-npx @playwright/cli resize 1920 1080
-npx @playwright/cli close
+browse.sh open
+browse.sh open https://example.com/
+browse.sh goto https://playwright.dev
+browse.sh type "search query"
+browse.sh click e3
+browse.sh dblclick e7
+browse.sh fill e5 "user@example.com"
+browse.sh drag e2 e8
+browse.sh hover e4
+browse.sh select e9 "option-value"
+browse.sh upload ./document.pdf
+browse.sh check e12
+browse.sh uncheck e12
+browse.sh snapshot
+browse.sh snapshot --filename=after-click.yaml
+browse.sh eval "document.title"
+browse.sh eval "el => el.textContent" e5
+browse.sh dialog-accept
+browse.sh dialog-accept "confirmation text"
+browse.sh dialog-dismiss
+browse.sh resize 1920 1080
+browse.sh close
 ```
 
 ### Navigation
 
 ```bash
-npx @playwright/cli go-back
-npx @playwright/cli go-forward
-npx @playwright/cli reload
+browse.sh go-back
+browse.sh go-forward
+browse.sh reload
 ```
 
 ### Keyboard
 
 ```bash
-npx @playwright/cli press Enter
-npx @playwright/cli press ArrowDown
-npx @playwright/cli keydown Shift
-npx @playwright/cli keyup Shift
+browse.sh press Enter
+browse.sh press ArrowDown
+browse.sh keydown Shift
+browse.sh keyup Shift
 ```
 
 ### Mouse
 
 ```bash
-npx @playwright/cli mousemove 150 300
-npx @playwright/cli mousedown
-npx @playwright/cli mousedown right
-npx @playwright/cli mouseup
-npx @playwright/cli mouseup right
-npx @playwright/cli mousewheel 0 100
+browse.sh mousemove 150 300
+browse.sh mousedown
+browse.sh mousedown right
+browse.sh mouseup
+browse.sh mouseup right
+browse.sh mousewheel 0 100
 ```
 
 ### Save as
 
+Always save screenshots to `.playwright/data/screenshots/`.
+
 ```bash
-npx @playwright/cli screenshot
-npx @playwright/cli screenshot e5
-npx @playwright/cli screenshot --filename=page.png
-npx @playwright/cli pdf --filename=page.pdf
+browse.sh screenshot --filename=.playwright/data/screenshots/page.png
+browse.sh screenshot e5 --filename=.playwright/data/screenshots/element.png
+browse.sh pdf --filename=page.pdf
 ```
 
 ### Tabs
 
 ```bash
-npx @playwright/cli tab-list
-npx @playwright/cli tab-new
-npx @playwright/cli tab-new https://example.com/page
-npx @playwright/cli tab-close
-npx @playwright/cli tab-close 2
-npx @playwright/cli tab-select 0
+browse.sh tab-list
+browse.sh tab-new
+browse.sh tab-new https://example.com/page
+browse.sh tab-close
+browse.sh tab-close 2
+browse.sh tab-select 0
 ```
 
 ### Storage
 
 ```bash
-npx @playwright/cli state-save
-npx @playwright/cli state-save auth.json
-npx @playwright/cli state-load auth.json
+browse.sh state-save
+browse.sh state-save auth.json
+browse.sh state-load auth.json
 
 # Cookies
-npx @playwright/cli cookie-list
-npx @playwright/cli cookie-list --domain=example.com
-npx @playwright/cli cookie-get session_id
-npx @playwright/cli cookie-set session_id abc123
-npx @playwright/cli cookie-set session_id abc123 --domain=example.com --httpOnly --secure
-npx @playwright/cli cookie-delete session_id
-npx @playwright/cli cookie-clear
+browse.sh cookie-list
+browse.sh cookie-list --domain=example.com
+browse.sh cookie-get session_id
+browse.sh cookie-set session_id abc123
+browse.sh cookie-set session_id abc123 --domain=example.com --httpOnly --secure
+browse.sh cookie-delete session_id
+browse.sh cookie-clear
 
 # LocalStorage
-npx @playwright/cli localstorage-list
-npx @playwright/cli localstorage-get theme
-npx @playwright/cli localstorage-set theme dark
-npx @playwright/cli localstorage-delete theme
-npx @playwright/cli localstorage-clear
+browse.sh localstorage-list
+browse.sh localstorage-get theme
+browse.sh localstorage-set theme dark
+browse.sh localstorage-delete theme
+browse.sh localstorage-clear
 
 # SessionStorage
-npx @playwright/cli sessionstorage-list
-npx @playwright/cli sessionstorage-get step
-npx @playwright/cli sessionstorage-set step 3
-npx @playwright/cli sessionstorage-delete step
-npx @playwright/cli sessionstorage-clear
+browse.sh sessionstorage-list
+browse.sh sessionstorage-get step
+browse.sh sessionstorage-set step 3
+browse.sh sessionstorage-delete step
+browse.sh sessionstorage-clear
 ```
 
 ### Network
 
 ```bash
-npx @playwright/cli route "**/*.jpg" --status=404
-npx @playwright/cli route "https://api.example.com/**" --body='{"mock": true}'
-npx @playwright/cli route-list
-npx @playwright/cli unroute "**/*.jpg"
-npx @playwright/cli unroute
+browse.sh route "**/*.jpg" --status=404
+browse.sh route "https://api.example.com/**" --body='{"mock": true}'
+browse.sh route-list
+browse.sh unroute "**/*.jpg"
+browse.sh unroute
 ```
 
 ### DevTools
 
 ```bash
-npx @playwright/cli console
-npx @playwright/cli console warning
-npx @playwright/cli network
-npx @playwright/cli run-code "async page => await page.context().grantPermissions(['geolocation'])"
-npx @playwright/cli tracing-start
-npx @playwright/cli tracing-stop
-npx @playwright/cli video-start
-npx @playwright/cli video-stop video.webm
+browse.sh console
+browse.sh console warning
+browse.sh network
+browse.sh run-code "async page => await page.context().grantPermissions(['geolocation'])"
+browse.sh tracing-start
+browse.sh tracing-stop
+browse.sh video-start
+browse.sh video-stop video.webm
 ```
 
 ## Open parameters
 
 ```bash
 # Use specific browser when creating session
-npx @playwright/cli open --browser=chrome
-npx @playwright/cli open --browser=firefox
-npx @playwright/cli open --browser=webkit
-npx @playwright/cli open --browser=msedge
+browse.sh open --browser=chrome
+browse.sh open --browser=firefox
+browse.sh open --browser=webkit
+browse.sh open --browser=msedge
 # Connect to browser via extension
-npx @playwright/cli open --extension
+browse.sh open --extension
 
-# Use persistent profile (by default profile is in-memory)
-npx @playwright/cli open --persistent
-# Use persistent profile with custom directory
-npx @playwright/cli open --profile=/path/to/profile
-
-# Start with config file
-npx @playwright/cli open --config=my-config.json
-
-# Close the browser
-npx @playwright/cli close
 # Delete user data for the default session
-npx @playwright/cli delete-data
+browse.sh delete-data
 ```
 
 ## Snapshots
 
-After each command, @playwright/cli provides a snapshot of the current browser state.
+After each command, a snapshot of the current browser state is provided.
 
 ```bash
-> npx @playwright/cli goto https://example.com
+> browse.sh goto https://example.com
 ### Page
 - Page URL: https://example.com/
 - Page Title: Example Domain
 ### Snapshot
-[Snapshot](.playwright/output/page-2026-02-14T19-22-42-679Z.yml)
+[Snapshot](.playwright/data/output/page-2026-02-14T19-22-42-679Z.yml)
 ```
 
-You can also take a snapshot on demand using `npx @playwright/cli snapshot` command.
+You can also take a snapshot on demand using `browse.sh snapshot`.
 
 If `--filename` is not provided, a new snapshot file is created with a timestamp. Default to automatic file naming, use `--filename=` when artifact is a part of the workflow result.
 
 ## Browser Sessions
 
 ```bash
-# create new browser session named "mysession" with persistent profile
-npx @playwright/cli -s=mysession open example.com --persistent
-# same with manually specified profile directory (use when requested explicitly)
-npx @playwright/cli -s=mysession open example.com --profile=/path/to/profile
-npx @playwright/cli -s=mysession click e6
-npx @playwright/cli -s=mysession close  # stop a named browser
-npx @playwright/cli -s=mysession delete-data  # delete user data for persistent session
+# create new browser session named "mysession"
+browse.sh -s=mysession open example.com
+browse.sh -s=mysession click e6
+browse.sh -s=mysession close
+browse.sh -s=mysession delete-data
 
-npx @playwright/cli list
+browse.sh list
 # Close all browsers
-npx @playwright/cli close-all
+browse.sh close-all
 # Forcefully kill all browser processes
-npx @playwright/cli kill-all
-```
-
-## Local installation
-
-If the globally available binary is not installed, use npx to run commands:
-
-```bash
-npx @playwright/cli open https://example.com
-npx @playwright/cli click e1
+browse.sh kill-all
 ```
 
 ## Example: Form submission
 
 ```bash
-npx @playwright/cli open https://example.com/form
-npx @playwright/cli snapshot
+browse.sh open https://example.com/form
+browse.sh snapshot
 
-npx @playwright/cli fill e1 "user@example.com"
-npx @playwright/cli fill e2 "password123"
-npx @playwright/cli click e3
-npx @playwright/cli snapshot
-npx @playwright/cli close
+browse.sh fill e1 "user@example.com"
+browse.sh fill e2 "password123"
+browse.sh click e3
+browse.sh snapshot
+browse.sh close
 ```
 
 ## Example: Multi-tab workflow
 
 ```bash
-npx @playwright/cli open https://example.com
-npx @playwright/cli tab-new https://example.com/other
-npx @playwright/cli tab-list
-npx @playwright/cli tab-select 0
-npx @playwright/cli snapshot
-npx @playwright/cli close
+browse.sh open https://example.com
+browse.sh tab-new https://example.com/other
+browse.sh tab-list
+browse.sh tab-select 0
+browse.sh snapshot
+browse.sh close
 ```
 
 ## Example: Debugging with DevTools
 
 ```bash
-npx @playwright/cli open https://example.com
-npx @playwright/cli click e4
-npx @playwright/cli fill e7 "test"
-npx @playwright/cli console
-npx @playwright/cli network
-npx @playwright/cli close
+browse.sh open https://example.com
+browse.sh click e4
+browse.sh fill e7 "test"
+browse.sh console
+browse.sh network
+browse.sh close
 ```
 
 ```bash
-npx @playwright/cli open https://example.com
-npx @playwright/cli tracing-start
-npx @playwright/cli click e4
-npx @playwright/cli fill e7 "test"
-npx @playwright/cli tracing-stop
-npx @playwright/cli close
+browse.sh open https://example.com
+browse.sh tracing-start
+browse.sh click e4
+browse.sh fill e7 "test"
+browse.sh tracing-stop
+browse.sh close
 ```
 
 ## Specific tasks
