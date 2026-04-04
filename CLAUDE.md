@@ -1,10 +1,7 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## What This Repo Is
 
-A collection of reusable Claude Code skills (installed to `~/.claude/skills/`). Each skill lives in its own directory under `skills/` and consists of a `SKILL.md` (frontmatter + instructions) and supporting scripts.
+A collection of reusable foundational Claude Code skills.
+Each skill lives in its own directory under `skills/` and consists of a `SKILL.md` (frontmatter + instructions) and supporting scripts.
 
 ## Structure
 
