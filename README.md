@@ -10,6 +10,7 @@ A collection of reusable [Claude Code](https://claude.ai/code) skills.
 | [clean-commit](skills/clean-commit/) | Clean, atomic commits following project conventions with secret detection. |
 | [managing-todos](skills/managing-todos/) | Lightweight todo tracking using markdown files. Captures things noticed during a session to tackle later. |
 | [read-pdf](skills/read-pdf/) | Extract text, tables, and structured data from PDF files using pdfplumber. |
+| [read-whatsapp-export](skills/read-whatsapp-export/) | Process exported WhatsApp conversations into clean markdown with transcribed voice messages. Fully offline. |
 
 ## Installation
 
