@@ -1,6 +1,6 @@
 ---
 name: dedup-files
-description: Find and deduplicate files in a project using jdupes. Use this skill whenever the user mentions duplicate files, file deduplication, saving disk space by removing copies, finding identical files, or cleaning up repeated documents in a repo — even if they don't mention jdupes specifically. Especially relevant for documentation-heavy repos with PDFs or other large binary files that may have been copied around.
+description: Find and deduplicate files in a project — replaces copies with symlinks, respects .gitignore and common exclusions. Use this skill whenever the user mentions duplicate files, file deduplication, saving disk space by removing copies, finding identical files, or cleaning up repeated documents in a repo. Especially relevant for documentation-heavy repos with PDFs or other large binary files that may have been copied around.
 ---
 
 ## Overview
