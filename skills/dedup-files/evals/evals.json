@@ -1,0 +1,28 @@
+{
+  "skill_name": "dedup-files",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I've got this docs repo at {test_dir} and I'm pretty sure there are a bunch of duplicate PDFs scattered across subfolders. Can you find them and clean things up? I want to save space but keep all the paths working.",
+      "expected_output": "Should scan the directory with jdupes, present a summary of duplicate groups with sizes, ask for confirmation, then replace duplicates with symlinks. Should exclude hidden dirs and node_modules.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Hey, I only want to dedup the files inside {test_dir}/reports/ — don't touch anything else. There might be some copies of the same quarterly report in different folders.",
+      "expected_output": "Should scope the jdupes scan to only the reports/ subdirectory, not the whole project. Should still show preview and ask for confirmation before symlinking.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Can you check {test_dir} for duplicate files? I think there are some but I'm not sure. Also there's a .gitignore that excludes the build/ folder so don't scan that.",
+      "expected_output": "Should parse .gitignore to find the build/ exclusion, add it to jdupes flags, scan, and report findings. If duplicates found, present them and ask before acting.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "I have a media project at {test_dir} with a ton of images — PNGs, JPGs, SVGs — spread across photos/, assets/, and some in node_modules/. I'm pretty sure the same hero banner and product photo got copied into multiple folders. Can you find the duplicates and symlink them? Don't touch anything in node_modules though.",
+      "expected_output": "Should scan the directory with jdupes, find the duplicate image groups (hero banner PNGs across 3 dirs, product shot JPGs across 3 dirs), exclude node_modules and hidden dirs, present a clear summary with sizes, ask for confirmation, then symlink. The logo.svg copy in node_modules should not appear in results."
+    }
+  ]
+}
