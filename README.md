@@ -8,6 +8,7 @@ A collection of foundational [Claude Code](https://claude.ai/code) skills — ge
 |-------|-------------|
 | [browse](skills/browse/) | Browser automation via Playwright — navigate websites, fill forms, take screenshots, and extract data. |
 | [clean-commit](skills/clean-commit/) | Clean, atomic commits following project conventions with secret detection. |
+| [create-writing-dna](skills/create-writing-dna/) | Extract your writing voice from past samples across media and generate a portable per-person voice skill. Bilingual-aware. |
 | [dedup-files](skills/dedup-files/) | Find and deduplicate files in a project — replaces copies with symlinks, respects .gitignore and common exclusions. |
 | [managing-todos](skills/managing-todos/) | Lightweight todo tracking using markdown files. Captures things noticed during a session to tackle later. |
 | [read-pdf](skills/read-pdf/) | Extract text, tables, and structured data from PDF files using pdfplumber. |
