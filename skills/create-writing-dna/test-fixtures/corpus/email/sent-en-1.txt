@@ -1,0 +1,13 @@
+Subject: Re: Q3 capacity planning
+
+Hi Marta,
+
+Thanks for putting the numbers together.
+
+Two things before we commit. First, the 30% growth assumption looks high to me. Last year we did 18% and that was a good year. I'd plan for 20% and keep the extra budget as a buffer we can release if traffic shows up.
+
+Second, we don't need the new region yet. The latency data doesn't justify it. Let's revisit in Q4 with real numbers instead of a guess.
+
+Happy to walk through this on a call if it's easier. Otherwise I'll sign off on the 20% version Friday.
+
+Caue

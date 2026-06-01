@@ -1,0 +1,11 @@
+[09:02] eai, o deploy de ontem quebrou?
+[09:02] vi uns erro no log
+[09:03] nao, o deploy passou. o que quebrou foi o merge depois
+[09:03] alguem fez force push na main 🙃
+[09:04] classico
+[09:05] vou dar um revert e rodar o build de novo
+[09:05] me da 10 min
+[09:11] pronto, voltou. build verde
+[09:11] da uma olhada ai pra confirmar
+[09:14] confirmado, ta de pe
+[09:14] valeu. proxima vez a gente trava a main
