@@ -34,7 +34,7 @@ robust, seamless, cutting-edge, innovative, comprehensive, pivotal, nuanced, com
 | tapestry | (delete) |
 
 ## Em-dash rule
-More than one em-dash per 3-4 paragraphs is above human baseline. Even a single em-dash is a tell if it injects a dramatic explanatory aside mid-sentence. **Fix:** use commas or periods, or restructure. **Do NOT substitute a colon** — a colon is often also a tell. Count em-dashes before claiming overuse.
+More than one em-dash per 3-4 paragraphs is above human baseline. Even a single em-dash is a tell if it injects a dramatic explanatory aside mid-sentence. **Fix:** use commas or periods, or restructure. **Do NOT replace a dramatic dash with a colon** — a colon used as a dash substitute is often also a tell. (Genuine label or list-introducing colons — "New target: Friday", "Two things:" — are fine and not affected by this rule.) Count em-dashes before claiming overuse.
 
 ## Portuguese — base list (starter; refine per person)
 - Verbs / words: mergulhar (em), aproveitar (as "leverage"), potencializar, impulsionar, navegar (metaphorical), desvendar, robusto, abrangente, transformador, multifacetado, inovador, crucial.

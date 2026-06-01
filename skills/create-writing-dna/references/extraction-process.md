@@ -36,7 +36,7 @@ Pass 1 only. Emit the DNA with metadata `readiness: minimum-viable`, skip Pass 2
 ## Emit the voice skill (final step of every run)
 1. Choose the person's kebab name (`{{name}}`) and display name (`{{Name}}`); note the languages and possessive.
 2. Create the skill directory `~/.claude/skills/<name>-voice/` (or a user-chosen `skills/` dir).
-3. Write `writing-dna.md` (finalized).
+3. Write `writing-dna.md` (finalized). Fill `{{Name}}` (display name) and `{{date}}` (today's date, in the §8 `created:` field).
 4. Copy `generating.md` **verbatim** from `templates/voice-skill/`.
 5. Render `SKILL.md` from `SKILL.md.tmpl`, filling `{{name}}` / `{{Name}}` / `{{languages}}` / `{{their}}`.
 6. Tell the user the folder is portable: copy it into any `skills/` directory and the voice works standalone, with no external dependency.
