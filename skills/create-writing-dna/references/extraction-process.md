@@ -40,6 +40,7 @@ Pass 1 only. Emit the DNA with metadata `readiness: minimum-viable`, skip Pass 2
 4. Copy `generating.md` **verbatim** from `templates/voice-skill/`.
 5. Render `SKILL.md` from `SKILL.md.tmpl`, filling `{{name}}` / `{{Name}}` / `{{languages}}` / `{{their}}`.
 6. Tell the user the folder is portable: copy it into any `skills/` directory and the voice works standalone, with no external dependency.
+7. **Delete the working corpus** (the temp/scratch dir from Pass 0) — it holds the user's private writing and is no longer needed. Skip only if the user explicitly asked to keep it. See `source-discovery.md` → "Where the corpus lives".
 
 ## Bilingual handling
 One DNA file covers all languages. For a language with thin or no samples, write `INFERRED` patterns marked `<!-- INFERRED -->` (based on the primary-language voice plus standard conventions for the secondary language) and validate them in Pass 3.
